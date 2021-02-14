@@ -51,4 +51,9 @@ dependencies {
 
     implementation "androidx.activity:activity-ktx:1.2.0"
     implementation "androidx.fragment:fragment-ktx:1.3.0"
+
+    // dagger 는 anotation processor 를 사용하여 컴파일 시간에 코드를 생성한다.
+    def dagger_version = "2.27"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }
