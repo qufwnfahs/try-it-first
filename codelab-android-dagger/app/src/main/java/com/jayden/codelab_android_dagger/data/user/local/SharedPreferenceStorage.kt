@@ -17,8 +17,9 @@
 package com.jayden.codelab_android_dagger.data.user.local
 
 import android.content.Context
+import javax.inject.Inject
 
-class SharedPreferenceStorage(context: Context) : Storage {
+class SharedPreferenceStorage @Inject constructor(context: Context) : Storage {
 
     private val sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 

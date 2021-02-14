@@ -1,8 +1,17 @@
-package com.jayden.codelab_android_dagger.view.registeration
+package com.jayden.codelab_android_dagger.view.registration
 
 import com.jayden.codelab_android_dagger.data.user.UserManager
+import javax.inject.Inject
 
-class RegisterationViewModel(private val userManager: UserManager) {
+/**
+ * Kotlin 에서 구성자에 Annotation 을 적용하려면 constructor 키워드를 명시해야 한다.
+ *
+ * @Inject Annotation 을 통해 Dagger 는
+ *  - RegisterationViewModel 타입 인스턴스를 만드는 방법
+ *  - RegisterationViewModel 은 UserManager 를 파라미터로 사용하고 있으므로 종속성이 존재
+ * 를 알 수 있다.
+ */
+class RegistrationViewModel @Inject constructor(private val userManager: UserManager) {
 
     private var username: String? = null
     private var password: String? = null

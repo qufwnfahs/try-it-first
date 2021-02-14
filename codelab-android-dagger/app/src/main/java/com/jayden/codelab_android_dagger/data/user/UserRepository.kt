@@ -1,8 +1,9 @@
 package com.jayden.codelab_android_dagger.data.user
 
+import javax.inject.Inject
 import kotlin.random.Random
 
-class UserRepository(private val userManager: UserManager) {
+class UserRepository @Inject constructor(private val userManager: UserManager) {
 
     val username: String
         get() = userManager.username

@@ -1,11 +1,11 @@
-package com.jayden.codelab_android_dagger.view.registeration.fragment.enterdetails
+package com.jayden.codelab_android_dagger.view.registration.fragment.enterdetails
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.jayden.codelab_android_dagger.view.registeration.fragment.EnterDetailsError
-import com.jayden.codelab_android_dagger.view.registeration.fragment.EnterDetailsSuccess
-import com.jayden.codelab_android_dagger.view.registeration.fragment.EnterDetailsViewState
+import com.jayden.codelab_android_dagger.view.registration.fragment.EnterDetailsError
+import com.jayden.codelab_android_dagger.view.registration.fragment.EnterDetailsSuccess
+import com.jayden.codelab_android_dagger.view.registration.fragment.EnterDetailsViewState
 
 private const val MAX_LENGTH = 5
 

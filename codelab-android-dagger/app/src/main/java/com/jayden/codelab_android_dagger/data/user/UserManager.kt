@@ -17,11 +17,12 @@
 package com.jayden.codelab_android_dagger.data.user
 
 import com.jayden.codelab_android_dagger.data.user.local.Storage
+import javax.inject.Inject
 
 private const val REGISTERED_USER_NAME = "registered_username"
 private const val PASSWORD_SUFFIX = "password"
 
-class UserManager(private val storage: Storage) {
+class UserManager @Inject constructor(private val storage: Storage) {
 
     var userRepository: UserRepository? = null
 

@@ -9,11 +9,10 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.jayden.codelab_android_dagger.App
-import com.jayden.codelab_android_dagger.R
 import com.jayden.codelab_android_dagger.data.user.UserManager
 import com.jayden.codelab_android_dagger.databinding.ActivityLoginBinding
 import com.jayden.codelab_android_dagger.view.main.MainActivity
-import com.jayden.codelab_android_dagger.view.registeration.RegisterationActivity
+import com.jayden.codelab_android_dagger.view.registration.RegistrationActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -51,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
 
             unregister.setOnClickListener {
                 loginViewModel.unregister()
-                val intent = Intent(this@LoginActivity, RegisterationActivity::class.java).apply {
+                val intent = Intent(this@LoginActivity, RegistrationActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 }
                 startActivity(intent)

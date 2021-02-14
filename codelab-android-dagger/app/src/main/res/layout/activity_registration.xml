@@ -21,7 +21,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_view"
-        android:name="com.jayden.codelab_android_dagger.view.registeration.fragment.EnterDetailsFragment"
+        android:name="com.jayden.codelab_android_dagger.view.registration.fragment.EnterDetailsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

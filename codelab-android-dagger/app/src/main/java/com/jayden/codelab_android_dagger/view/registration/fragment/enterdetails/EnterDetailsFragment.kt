@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jayden.codelab_android_dagger.view.registeration.fragment
+package com.jayden.codelab_android_dagger.view.registration.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -22,12 +22,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.jayden.codelab_android_dagger.databinding.FragmentEnterDetailsBinding
-import com.jayden.codelab_android_dagger.view.registeration.RegisterationActivity
-import com.jayden.codelab_android_dagger.view.registeration.RegisterationViewModel
-import com.jayden.codelab_android_dagger.view.registeration.fragment.enterdetails.EnterDetailsViewModel
+import com.jayden.codelab_android_dagger.view.registration.RegistrationActivity
+import com.jayden.codelab_android_dagger.view.registration.fragment.enterdetails.EnterDetailsViewModel
 
 class EnterDetailsFragment : Fragment() {
 
@@ -35,8 +33,8 @@ class EnterDetailsFragment : Fragment() {
     private val binding: FragmentEnterDetailsBinding
         get() = _binding!!
 
-    private val registerationViewModel by lazy {
-        (activity as RegisterationActivity).registerationViewModel
+    private val registrationViewModel by lazy {
+        (activity as RegistrationActivity).registrationViewModel
     }
     private val enterDetailsViewModel: EnterDetailsViewModel by viewModels()
 
@@ -44,7 +42,7 @@ class EnterDetailsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentEnterDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -73,9 +71,9 @@ class EnterDetailsFragment : Fragment() {
                 is EnterDetailsSuccess -> {
                     val username = binding.username.text.toString()
                     val password = binding.password.text.toString()
-                    registerationViewModel.updateUserData(username, password)
+                    registrationViewModel.updateUserData(username, password)
 
-                    (activity as RegisterationActivity).onDetailsEntered()
+                    (activity as RegistrationActivity).onDetailsEntered()
                 }
                 is EnterDetailsError -> {
                     binding.error.text = state.error

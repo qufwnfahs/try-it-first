@@ -3,33 +3,37 @@ package com.jayden.codelab_android_dagger.view.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.jayden.codelab_android_dagger.App
-import com.jayden.codelab_android_dagger.R
-import com.jayden.codelab_android_dagger.data.user.UserRepository
-import com.jayden.codelab_android_dagger.data.user.local.Storage
+import com.jayden.codelab_android_dagger.data.user.UserManager
 import com.jayden.codelab_android_dagger.databinding.ActivityMainBinding
 import com.jayden.codelab_android_dagger.view.login.LoginActivity
-import com.jayden.codelab_android_dagger.view.registeration.RegisterationActivity
+import com.jayden.codelab_android_dagger.view.registration.RegistrationActivity
 import com.jayden.codelab_android_dagger.view.settings.SettingsActivity
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val mainViewModel by lazy {
-        MainViewModel((application as App).userManager.userRepository)
-    }
+    @Inject
+    lateinit var userManager: UserManager
 
+    @Inject
+    lateinit var mainViewModel: MainViewModel
+
+    /**
+     * Register 후 Main Page 로 이동하지 않음
+     *  -> Dagger always provides a new instance of a type (in our case UserManager) when injecting dependencies by default.
+     *
+     * Scope 를 통해 해결 필요 !
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as App).appComponent.inject(this)
         super.onCreate(savedInstanceState)
 
-        val userManager = (application as App).userManager
         if (!userManager.isUserLoggedIn()) {
             if (!userManager.isUserRegistered()) {
-                startActivity(Intent(this, RegisterationActivity::class.java))
+                startActivity(Intent(this, RegistrationActivity::class.java))
                 finish()
             } else {
                 startActivity(Intent(this, LoginActivity::class.java))

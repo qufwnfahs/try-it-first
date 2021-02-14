@@ -1,14 +1,12 @@
-package com.jayden.codelab_android_dagger.view.registeration.fragment.termsandconditions
+package com.jayden.codelab_android_dagger.view.registration.fragment.termsandconditions
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import com.jayden.codelab_android_dagger.databinding.FragmentTermsAndConditionsBinding
-import com.jayden.codelab_android_dagger.view.registeration.RegisterationActivity
-import com.jayden.codelab_android_dagger.view.registeration.RegisterationViewModel
+import com.jayden.codelab_android_dagger.view.registration.RegistrationActivity
 
 class TermsAndConditionsFragment : Fragment() {
 
@@ -16,15 +14,15 @@ class TermsAndConditionsFragment : Fragment() {
     val binding: FragmentTermsAndConditionsBinding
         get() = _binding!!
 
-    private val registerationViewModel by lazy {
-        (activity as RegisterationActivity).registerationViewModel
+    private val registrationViewModel by lazy {
+        (activity as RegistrationActivity).registrationViewModel
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTermsAndConditionsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,8 +36,8 @@ class TermsAndConditionsFragment : Fragment() {
     private fun setUpViews() {
         with(binding) {
             next.setOnClickListener {
-                registerationViewModel.acceptTCs()
-                (activity as RegisterationActivity).onTermsAndConditionsAccepted()
+                registrationViewModel.acceptTCs()
+                (activity as RegistrationActivity).onTermsAndConditionsAccepted()
             }
         }
     }

@@ -10,9 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CodelabAndroidDagger">
-        <activity android:name=".view.settings.SettingsActivity"></activity>
+        <activity android:name=".view.settings.SettingsActivity" />
         <activity android:name=".view.login.LoginActivity" />
-        <activity android:name=".view.registeration.RegisterationActivity" />
+        <activity android:name=".view.registration.RegistrationActivity" />
         <activity android:name=".view.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
