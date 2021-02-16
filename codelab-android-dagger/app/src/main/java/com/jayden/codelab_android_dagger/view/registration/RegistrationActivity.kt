@@ -7,6 +7,7 @@ import androidx.fragment.app.commit
 import com.jayden.codelab_android_dagger.App
 import com.jayden.codelab_android_dagger.R
 import com.jayden.codelab_android_dagger.databinding.ActivityRegistrationBinding
+import com.jayden.codelab_android_dagger.di.RegistrationComponent
 import com.jayden.codelab_android_dagger.view.main.MainActivity
 import com.jayden.codelab_android_dagger.view.registration.fragment.termsandconditions.TermsAndConditionsFragment
 import javax.inject.Inject
@@ -14,6 +15,8 @@ import javax.inject.Inject
 class RegistrationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistrationBinding
+
+    lateinit var registrationComponent: RegistrationComponent
 
     /**
      * 안드로이드 프레임워크 클래스 (Activity, Fragment, etc) 들은 시스템에 의해서 생성되기 때문에
@@ -30,7 +33,9 @@ class RegistrationActivity : AppCompatActivity() {
         // Ask Dagger to inject our dependencies.
         // Fragment Restoration 이슈를 방지하기 위해 super.onCreate() 이전에 inject
         // Activity 의 Restore Phase 중 Fragment 가 Attach 될 수 있고 ActivityBinding 에 접근하길 원할 수 있기 때문에
-        (application as App).appComponent.inject(this)
+        registrationComponent = (application as App).appComponent.registrationComponent().create()
+        registrationComponent.inject(this)
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityRegistrationBinding.inflate(layoutInflater)

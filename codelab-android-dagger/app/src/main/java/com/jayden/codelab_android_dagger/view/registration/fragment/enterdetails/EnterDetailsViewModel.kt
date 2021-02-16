@@ -6,10 +6,11 @@ import androidx.lifecycle.ViewModel
 import com.jayden.codelab_android_dagger.view.registration.fragment.EnterDetailsError
 import com.jayden.codelab_android_dagger.view.registration.fragment.EnterDetailsSuccess
 import com.jayden.codelab_android_dagger.view.registration.fragment.EnterDetailsViewState
+import javax.inject.Inject
 
 private const val MAX_LENGTH = 5
 
-class EnterDetailsViewModel : ViewModel() {
+class EnterDetailsViewModel @Inject constructor() : ViewModel() {
 
     private val _enterDetailsState = MutableLiveData<EnterDetailsViewState>()
     val enterDetailsState: LiveData<EnterDetailsViewState>

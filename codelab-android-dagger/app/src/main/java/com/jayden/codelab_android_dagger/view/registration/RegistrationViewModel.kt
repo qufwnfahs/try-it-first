@@ -1,6 +1,7 @@
 package com.jayden.codelab_android_dagger.view.registration
 
 import com.jayden.codelab_android_dagger.data.user.UserManager
+import com.jayden.codelab_android_dagger.di.ActivityScope
 import javax.inject.Inject
 
 /**
@@ -11,6 +12,7 @@ import javax.inject.Inject
  *  - RegisterationViewModel 은 UserManager 를 파라미터로 사용하고 있으므로 종속성이 존재
  * 를 알 수 있다.
  */
+@ActivityScope
 class RegistrationViewModel @Inject constructor(private val userManager: UserManager) {
 
     private var username: String? = null

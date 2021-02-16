@@ -16,6 +16,7 @@
 
 package com.jayden.codelab_android_dagger.view.registration.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,9 +24,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
+import com.jayden.codelab_android_dagger.App
 import com.jayden.codelab_android_dagger.databinding.FragmentEnterDetailsBinding
 import com.jayden.codelab_android_dagger.view.registration.RegistrationActivity
+import com.jayden.codelab_android_dagger.view.registration.RegistrationViewModel
 import com.jayden.codelab_android_dagger.view.registration.fragment.enterdetails.EnterDetailsViewModel
+import javax.inject.Inject
 
 class EnterDetailsFragment : Fragment() {
 
@@ -33,10 +37,17 @@ class EnterDetailsFragment : Fragment() {
     private val binding: FragmentEnterDetailsBinding
         get() = _binding!!
 
-    private val registrationViewModel by lazy {
-        (activity as RegistrationActivity).registrationViewModel
+    @Inject
+    lateinit var registrationViewModel: RegistrationViewModel
+
+    @Inject
+    lateinit var enterDetailsViewModel: EnterDetailsViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        (requireActivity() as RegistrationActivity).registrationComponent.inject(this)
     }
-    private val enterDetailsViewModel: EnterDetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
