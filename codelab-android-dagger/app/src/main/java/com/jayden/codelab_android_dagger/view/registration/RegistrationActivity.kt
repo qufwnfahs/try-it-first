@@ -7,7 +7,6 @@ import androidx.fragment.app.commit
 import com.jayden.codelab_android_dagger.App
 import com.jayden.codelab_android_dagger.R
 import com.jayden.codelab_android_dagger.databinding.ActivityRegistrationBinding
-import com.jayden.codelab_android_dagger.di.RegistrationComponent
 import com.jayden.codelab_android_dagger.view.main.MainActivity
 import com.jayden.codelab_android_dagger.view.registration.fragment.termsandconditions.TermsAndConditionsFragment
 import javax.inject.Inject

@@ -13,22 +13,21 @@ import com.jayden.codelab_android_dagger.data.user.UserManager
 import com.jayden.codelab_android_dagger.databinding.ActivityLoginBinding
 import com.jayden.codelab_android_dagger.view.main.MainActivity
 import com.jayden.codelab_android_dagger.view.registration.RegistrationActivity
+import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
-    private val loginViewModel: LoginViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return modelClass.getConstructor(UserManager::class.java).newInstance(
-                    (application as App).userManager
-                )
-            }
-        }
-    }
+    lateinit var loginComponent: LoginComponent
+
+    @Inject
+    lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        loginComponent = (application as App).appComponent.loginComponent().create()
+        loginComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -1,6 +1,6 @@
-package com.jayden.codelab_android_dagger.di
+package com.jayden.codelab_android_dagger.view.registration
 
-import com.jayden.codelab_android_dagger.view.registration.RegistrationActivity
+import com.jayden.codelab_android_dagger.di.ActivityScope
 import com.jayden.codelab_android_dagger.view.registration.fragment.EnterDetailsFragment
 import com.jayden.codelab_android_dagger.view.registration.fragment.termsandconditions.TermsAndConditionsFragment
 import dagger.Subcomponent

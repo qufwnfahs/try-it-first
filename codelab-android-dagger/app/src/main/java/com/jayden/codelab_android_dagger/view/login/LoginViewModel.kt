@@ -20,8 +20,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jayden.codelab_android_dagger.data.user.UserManager
+import javax.inject.Inject
 
-class LoginViewModel(private val userManager: UserManager) : ViewModel() {
+class LoginViewModel @Inject constructor(private val userManager: UserManager) : ViewModel() {
 
     private val _loginState = MutableLiveData<LoginViewState>()
     val loginState: LiveData<LoginViewState>
