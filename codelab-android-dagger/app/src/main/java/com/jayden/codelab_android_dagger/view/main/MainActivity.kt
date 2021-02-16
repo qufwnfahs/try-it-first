@@ -16,9 +16,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     @Inject
-    lateinit var userManager: UserManager
-
-    @Inject
     lateinit var mainViewModel: MainViewModel
 
     /**
@@ -28,9 +25,9 @@ class MainActivity : AppCompatActivity() {
      * Scope 를 통해 해결 필요 !
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as App).appComponent.inject(this)
         super.onCreate(savedInstanceState)
 
+        val userManager = (application as App).appComponent.userManager()
         if (!userManager.isUserLoggedIn()) {
             if (!userManager.isUserRegistered()) {
                 startActivity(Intent(this, RegistrationActivity::class.java))
@@ -43,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             binding = ActivityMainBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
+            userManager.userComponent?.inject(this)
             setUpViews()
         }
     }

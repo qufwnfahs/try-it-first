@@ -17,6 +17,7 @@
 package com.jayden.codelab_android_dagger.data.user
 
 import com.jayden.codelab_android_dagger.data.user.local.Storage
+import com.jayden.codelab_android_dagger.di.UserComponent
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,14 +25,17 @@ private const val REGISTERED_USER_NAME = "registered_username"
 private const val PASSWORD_SUFFIX = "password"
 
 @Singleton
-class UserManager @Inject constructor(private val storage: Storage) {
-
-    var userRepository: UserRepository? = null
+class UserManager @Inject constructor(
+    private val storage: Storage,
+    private val userComponentFactory: UserComponent.Factory
+) {
+    var userComponent: UserComponent? = null
+        private set
 
     val username: String
         get() = storage.getString(REGISTERED_USER_NAME)
 
-    fun isUserLoggedIn() = userRepository != null
+    fun isUserLoggedIn() = userComponent != null
 
     fun isUserRegistered() = storage.getString(REGISTERED_USER_NAME).isNotEmpty()
 
@@ -56,7 +60,7 @@ class UserManager @Inject constructor(private val storage: Storage) {
     }
 
     fun logout() {
-        userRepository = null
+        userComponent = null
     }
 
     fun unregister() {
@@ -68,6 +72,6 @@ class UserManager @Inject constructor(private val storage: Storage) {
     }
 
     private fun userJustLoggedIn() {
-        userRepository = UserRepository(this)
+        userComponent = userComponentFactory.create()
     }
 }

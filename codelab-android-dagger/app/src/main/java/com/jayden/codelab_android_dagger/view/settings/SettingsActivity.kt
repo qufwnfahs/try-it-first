@@ -12,23 +12,19 @@ import com.jayden.codelab_android_dagger.data.user.UserManager
 import com.jayden.codelab_android_dagger.data.user.UserRepository
 import com.jayden.codelab_android_dagger.databinding.ActivitySettingsBinding
 import com.jayden.codelab_android_dagger.view.login.LoginActivity
+import javax.inject.Inject
 
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
 
-    private val settingsViewModel: SettingsViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return modelClass.getConstructor(UserRepository::class.java, UserManager::class.java).newInstance(
-                    (application as App).userManager.userRepository,
-                    (application as App).userManager
-                )
-            }
-        }
-    }
+    @Inject
+    lateinit var settingsViewModel: SettingsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val userManager = (application as App).appComponent.userManager()
+        userManager.userComponent?.inject(this)
+
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
