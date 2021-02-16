@@ -5,7 +5,9 @@ import com.jayden.codelab_android_dagger.view.main.MainActivity
 import com.jayden.codelab_android_dagger.view.registration.RegistrationActivity
 import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = [StorageModule::class])
 interface AppComponent {
 
